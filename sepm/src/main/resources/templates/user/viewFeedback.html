@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head th:replace="/fragments/head"></head>
+
+<body>
+
+    <nav th:replace="/fragments/nav :: nav-front"></nav>
+
+    <div class="container">
+        <div th:if="${!feedback.empty}">
+            <table class="table">
+                <tr>
+                    <th>feedback</th>
+                </tr>
+                <tr th:each="feedback: ${feedback}">
+                    <td th:text="${feedback.feedbacktext}"></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${feedback.empty}">
+            No Feedback for this product.
+        </div>
+    </div>
+
+    <div th:replace="/fragments/footer"></div>
+
+</body>
+
+</html>

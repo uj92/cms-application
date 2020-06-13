@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head th:replace="/fragments/head"></head>
+
+<body>
+
+    <nav th:replace="/fragments/nav :: nav-admin"></nav>
+
+    <div class="container">
+        <div th:if="${!user.empty}">
+            <table class="table">
+                <tr>
+                    <th>User ID</th>
+                    <th>User name</th>
+                    <th>E-Mail</th>
+                    <th>Phone</th>
+                    <th>Delete</th>
+                </tr>
+                <tr th:each="user: ${user}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.phoneNumber}"></td>
+                    <td><a th:href="@{'/admin/user/delete/' + ${user.id}}" class="confirmDeletion">Delete</a></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${user.empty}">
+            No Customers
+        </div>
+    </div>
+
+    <div th:replace="/fragments/footer"></div>
+
+</body>
+
+</html>

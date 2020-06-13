@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head th:replace="/fragments/head"></head>
+
+<body>
+
+    <nav th:replace="/fragments/nav :: nav-front"></nav>
+
+    <div class="container">
+        <form method="post" th:object="${order}" th:action="@{/user/createOrder}" enctype="multipart/form-data">
+        <div >
+
+            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                There are errors
+            </div>
+
+            <div class="form-group">
+                <label for="">Diary ID</label>
+                <input type="text" class="form-control" th:name="diaryid" placeholder="DiaryID" th:value="${currentDiaryid}" readonly>
+                <span class="error" th:if="${#fields.hasErrors('diaryid')}" th:errors="*{diaryid}"></span>
+            </div>
+            <div class="form-group">
+                <label for="">Custom Text</label>
+                <input type="text" class="form-control" th:field="*{customtext}" placeholder="Custom Text" required>
+                <span class="error" th:if="${#fields.hasErrors('customtext')}" th:errors="*{customtext}"></span>
+            </div>
+            <div class="form-group">
+                <label for="">Delivery Type</label><br>
+                <input type="radio" th:field="*{delivery}" value="Express"> Express
+                <input type="radio" id="expressDeliveryOption" th:field="*{delivery}" value="Standard" checked> Standard
+                <span class="error" th:if="${#fields.hasErrors('delivery')}" th:errors="*{delivery}"></span>
+                <p style="font-size:14px; color:red; font-style:italic;">*Extra $5 for Express Delivery</p>
+            </div>
+            <div class="form-group">
+                <label for="">Address</label>
+                <input type="text" class="form-control" th:field="*{address}" placeholder="Address" required>
+                <span class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+            </div>
+            <div class="form-group">
+                <label for="">State</label>
+                <select class="form-control" th:field="*{state}">
+                    <option value="VIC">VIC</option>
+                    <option value="NSW">NSW</option>
+                    <option value="WA">WA</option>
+                    <option value="SA">SA</option>
+                    <option value="QLD">QLD</option>
+                    <option value="NT">NT</option>
+                    <option value="TAS">TAS</option>
+                  </select>
+                <span class="error" th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></span>
+            </div>
+            <div class="form-group">
+                <label for="">Country</label>
+                <select class="form-control" th:field="*{country}">
+                    <option value="Australia">Australia</option>
+                  </select>
+                <span class="error" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></span>
+            </div>
+
+            <br><br>
+            <h4>Payment</h4>
+            <div class="form-group">
+                <label for="">Card Number</label>
+                <input type="text" class="form-control" th:field="*{cardno}" placeholder="Card Number" required>
+                <span class="error" th:if="${#fields.hasErrors('cardno')}" th:errors="*{cardno}"></span>
+            </div>
+            Expiry date<br>
+            <label for="">Month</label>&nbsp;
+                <select th:field="*{expirymonth}">
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label for="">Year</label>&nbsp;
+                <select th:field="*{expiryyear}">
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                  </select>
+            <div class="form-group">
+                <label for="">Security Code</label>
+                <input type="text" class="form-control" th:field="*{cvv}" placeholder="Security Code" required>
+                <span class="error" th:if="${#fields.hasErrors('cvv')}" th:errors="*{cvv}"></span>
+            </div>
+            <button class="btn btn-danger mb-5">Order</button>
+        </div>
+        </form>
+    </div>
+
+    <div th:replace="/fragments/footer"></div>
+
+</body>
+<script>
+    document.getElementById("expressDeliveryOption").setAttribute("checked","checked");
+    document.getElementById("textbox").disabled = "disabled";
+</script>
+
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head th:replace="/fragments/head"></head>
+
+<body>
+
+    <nav th:replace="/fragments/nav :: nav-admin"></nav>
+
+    <div class="container">
+
+        <a href="/admin/diary/add" class="btn btn-primary mb-5">Add new</a>
+
+        <div th:if="${!diary.empty}">
+            <table class="table">
+                <tr>
+                    <th>Color</th>
+                    <th>Theme</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Available</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tr th:each="diari: ${diary}">
+                    <td th:text="${diari.papercolor}"></td>
+                    <td th:text="${diari.covertheme}"></td>
+                    <td th:text="${diari.papertype}"></td>
+                    <td th:text="${diari.price}"></td>
+                    <td th:text="${diari.available}"></td>
+                    <td><a th:href="@{'/admin/diary/edit/' + ${diari.id}}">Edit</a></td>
+                    <td><a th:href="@{'/admin/diary/delete/' + ${diari.id}}" class="confirmDeletion">Delete</a></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${diary.empty}">
+            No diaries
+        </div>
+    </div>
+
+    <div th:replace="/fragments/footer"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head th:replace="/fragments/head"></head>
+
+<body>
+
+    <nav th:replace="/fragments/nav :: nav-admin"></nav>
+
+    <div class="container">
+        <div>
+            <form method="post" th:action="@{/admin/order/report}" enctype="multipart/form-data">
+                <div >        
+                    <div class="form-group">
+                        <label for="">Month</label>
+                        <select th:name="month">
+                            <option value="01">JAN</option>
+                            <option value="02">FEB</option>
+                            <option value="03">MAR</option>
+                            <option value="04">APR</option>
+                            <option value="05">MAY</option>
+                            <option value="06">JUN</option>
+                            <option value="07">JUL</option>
+                            <option value="08">AUG</option>
+                            <option value="09">SEP</option>
+                            <option value="10">OCT</option>
+                            <option value="11">NOV</option>
+                            <option value="12">DEC</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-danger mb-5">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div th:replace="/fragments/footer"></div>
+</body>
+</html>

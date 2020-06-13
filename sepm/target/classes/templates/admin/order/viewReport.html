@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head th:replace="/fragments/head"></head>
+
+<body>
+
+    <nav th:replace="/fragments/nav :: nav-admin"></nav>
+
+    <div class="container">
+        <div th:if="${!order.empty}">
+            <table class="table">
+                <tr>
+                    <th>Diary</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th>User</th>
+                    <th>Custom Text</th>
+                    <th>Delivery</th>
+                </tr>
+                <tr th:each="order: ${order}">
+                    <td th:text="${order.diaryid}"></td>
+                    <td th:text="${order.price}"></td>
+                    <td th:text="${order.date}"></td>
+                    <td th:text="${order.userid}"></td>
+                    <td th:text="${order.customtext}"></td>
+                    <td th:text="${order.delivery}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div th:replace="/fragments/footer"></div>
+
+</body>
+</html>
